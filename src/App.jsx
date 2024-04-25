@@ -44,6 +44,8 @@ function App() {
     {value: '', index: 8, selected: false}
   ]);
 
+  const [message, setMessage] = useState('teste');
+
   const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
 
@@ -63,6 +65,7 @@ function App() {
         copy[combination[2]] = {value: value, index: copy[combination[2]].index, selected: true};
         setRunning(false);
         setBoard(copy);
+        setMessage(XTurn ? 'Player O wins' : 'Player X wins');
         win = true;
       }
     })
@@ -76,14 +79,36 @@ function App() {
     if(draw && !win) {
       console.log('empate');
       setRunning(false);
+      setMessage('Draw')
     }
   }
 
+  const resetGame = () => {
+    setBoard([
 
+      {value: '', index: 0, selected: false},
+      {value: '', index: 1, selected: false},
+      {value: '', index: 2, selected: false},
+      {value: '', index: 3, selected: false},
+      {value: '', index: 4, selected: false},
+      {value: '', index: 5, selected: false},
+      {value: '', index: 6, selected: false},
+      {value: '', index: 7, selected: false},
+      {value: '', index: 8, selected: false}
+    ]);
+
+    setRunning(true);
+    setXTurn(true);
+  }
 
   return (
+    <>
+    <div style={{display: !running ? 'flex' : 'none'}} className="modal">
+      <h2>{message} </h2>
+      <button onClick={resetGame}>Play Again</button>
+    </div>
     <div className="container">
-      <h3>Turn for</h3>
+      <button onClick={resetGame}>Restart</button>
       <div className="turn-container">
         <div style={{backgroundColor: XTurn ? 'rgba(243, 10, 80, 1)' : 'rgba(243, 10, 80, 0)'}}>X</div>
         <div style={{backgroundColor: XTurn ? 'rgba(243, 10, 80, 0)' : 'rgba(243, 10, 80, 1)'}}>O</div>
@@ -97,6 +122,7 @@ function App() {
         })}
       </div>
     </div>
+    </>
 
   )
 }
