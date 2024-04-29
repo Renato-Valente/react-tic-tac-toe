@@ -82,18 +82,6 @@ body {
   padding: 0.2rem 2rem;
 }
 
-/* .turn-container div:nth-child(even) {
-  background-color: rgb(243, 10, 80);
-}
-
-.turn-container:hover div:nth-child(odd){
-  background-color: rgb(243, 10, 80);
-}
-
-.turn-container:hover div:nth-child(even){
-  background-color: rgba(243, 10, 80, 0);
-} */
-
 .game-container {
   width: 400px;
   display: grid;
@@ -112,5 +100,29 @@ body {
 
 .box:hover {
   background-color: rgb(243, 10, 80);
+}
+
+@media (max-width: 650px) {
+  .game-container {
+    max-width: 300px;
+    grid-auto-rows: 75px;
+  }
+
+  .box {
+    font-size: 4rem;
+  }
+
+  .box:hover {
+    background-color: #333;
+  }
+  .box:active {
+    background-color: rgb(243, 10, 80);
+  }
+
+  .modal {
+    width: 300px;
+    height: 300px;
+    text-align: center;
+  }
 }
 
